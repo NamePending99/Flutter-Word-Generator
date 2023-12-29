@@ -65,6 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
         throw UnimplementedError('No widget for $selectedIndex');
     }
 
+    var colorScheme = Theme.of(context).colorScheme;
+    var mainArea = ColoredBox(
+      color: colorScheme.primaryContainer,
+      child: AnimatedSwitcher(
+        duration: Duration(milliseconds: 200),
+        child: page,
+      ),
+    );
+
     return LayoutBuilder(builder: (context, constrains) {
       return Scaffold(
         body: Row(
@@ -92,12 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              // Makes childred take up as much space as possible. Very usefull in Rows and Columns.
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
-              ),
-            ),
+                // Makes childred take up as much space as possible. Very usefull in Rows and Columns.
+                child: mainArea),
           ],
         ),
       );
